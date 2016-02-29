@@ -23,7 +23,15 @@ class SettingsViewController: UIViewController {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-    
+
+  override func viewWillAppear(animated: Bool) {
+    super.viewWillAppear(animated)
+
+    let defaults = NSUserDefaults.standardUserDefaults()
+    let intValue = defaults.integerForKey(kDefaultTip)
+    tipControl.selectedSegmentIndex = intValue
+  }
+
   @IBAction func onTap(sender: AnyObject) {
     dismissViewControllerAnimated(true, completion: nil)
   }
@@ -39,7 +47,7 @@ class SettingsViewController: UIViewController {
     */
   @IBAction func onValueChange(sender: AnyObject) {
     let defaults = NSUserDefaults.standardUserDefaults()
-    defaults.setInteger(tipControl.selectedSegmentIndex, forKey: "defaultTip")
+    defaults.setInteger(tipControl.selectedSegmentIndex, forKey: kDefaultTip)
     defaults.synchronize()
   }
 

@@ -13,9 +13,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   var window: UIWindow?
 
+  var mainViewController: ViewController!
 
   func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     // Override point for customization after application launch.
+
+    let defaults = NSUserDefaults.standardUserDefaults()
+
+    if let savedDate = defaults.objectForKey(kLastAppCloseTime) as? NSDate {
+      let currentDate = NSDate()
+      let timeSinceDate = currentDate.timeIntervalSinceDate(savedDate)
+      let minutesElapsed = timeSinceDate / 60.0
+
+      if (minutesElapsed > 10.0) {
+       //If more than ten minutes, replace last bill amount with zero.
+        defaults.setObject("", forKey: kLastBillAmount)
+      }
+    }
+
     return true
   }
 
@@ -39,8 +54,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
   func applicationWillTerminate(application: UIApplication) {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+
+    // Store the last bill amount in user defaults.
+    let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.setObject(mainViewController.billField.text, forKey: kLastBillAmount)
+
+    // Store the termination time in user defaults.
+    defaults.setObject(NSDate(), forKey: kLastAppCloseTime)
+    defaults.synchronize()
   }
-
-
 }
 

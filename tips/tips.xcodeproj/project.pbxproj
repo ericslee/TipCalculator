@@ -13,6 +13,7 @@
 		11114F941C837E0300571740 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 11114F931C837E0300571740 /* Assets.xcassets */; };
 		11114F971C837E0300571740 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 11114F951C837E0300571740 /* LaunchScreen.storyboard */; };
 		11114F9F1C83A65D00571740 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11114F9E1C83A65D00571740 /* SettingsViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		11114FA21C83E1E700571740 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11114FA11C83E1E700571740 /* Constants.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		11114F961C837E0300571740 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		11114F981C837E0300571740 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		11114F9E1C83A65D00571740 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
+		11114FA11C83E1E700571740 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -62,6 +64,7 @@
 				11114F931C837E0300571740 /* Assets.xcassets */,
 				11114F951C837E0300571740 /* LaunchScreen.storyboard */,
 				11114F981C837E0300571740 /* Info.plist */,
+				11114FA11C83E1E700571740 /* Constants.swift */,
 			);
 			path = tips;
 			sourceTree = "<group>";
@@ -148,6 +151,7 @@
 				11114F8F1C837E0300571740 /* ViewController.swift in Sources */,
 				11114F8D1C837E0200571740 /* AppDelegate.swift in Sources */,
 				11114F9F1C83A65D00571740 /* SettingsViewController.swift in Sources */,
+				11114FA21C83E1E700571740 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

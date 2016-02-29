@@ -18,15 +18,28 @@ class ViewController: UIViewController {
   override func viewDidLoad() {
     super.viewDidLoad()
 
+    // Store a reference to this view controller in the app delegate.
+    let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+    appDelegate.mainViewController = self
+
     tipLabel.text = "$0.00"
     totalLabel.text = "$0.00"
+
+    // Remember the bill amount across app restarts if it has been <10 min since
+    // app restart. If it has been >10 min, the stored bill amount will have been
+    // overwritten to zero.
+    let defaults = NSUserDefaults.standardUserDefaults()
+    if let savedBill = defaults.objectForKey(kLastBillAmount) {
+      billField.text = savedBill as? String
+      onEditingChanged(billField)
+    }
   }
 
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
 
     let defaults = NSUserDefaults.standardUserDefaults()
-    let intValue = defaults.integerForKey("defaultTip")
+    let intValue = defaults.integerForKey(kDefaultTip)
     tipControl.selectedSegmentIndex = intValue
   }
 
