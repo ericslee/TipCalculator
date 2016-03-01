@@ -15,6 +15,8 @@ class ViewController: UIViewController {
   @IBOutlet weak var totalLabel: UILabel!
   @IBOutlet weak var tipControl: UISegmentedControl!
 
+  let formatter = NSNumberFormatter()
+
   override func viewDidLoad() {
     super.viewDidLoad()
 
@@ -22,8 +24,11 @@ class ViewController: UIViewController {
     let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
     appDelegate.mainViewController = self
 
-    tipLabel.text = "$0.00"
-    totalLabel.text = "$0.00"
+    // Use locale specific currency.
+    formatter.numberStyle = .CurrencyStyle
+
+    tipLabel.text = formatter.stringFromNumber(0)
+    totalLabel.text = formatter.stringFromNumber(0)
 
     // Remember the bill amount across app restarts if it has been <10 min since
     // app restart. If it has been >10 min, the stored bill amount will have been
@@ -41,6 +46,8 @@ class ViewController: UIViewController {
     let defaults = NSUserDefaults.standardUserDefaults()
     let intValue = defaults.integerForKey(kDefaultTip)
     tipControl.selectedSegmentIndex = intValue
+
+    onEditingChanged(billField)
   }
 
   @IBAction func onEditingChanged(sender: AnyObject) {
@@ -51,8 +58,8 @@ class ViewController: UIViewController {
     let tip = billAmount * tipPercentage
     let total = billAmount + tip
 
-    tipLabel.text = String(format: "$%.2f", tip)
-    totalLabel.text = String(format: "$%.2f", total)
+    tipLabel.text = formatter.stringFromNumber(tip)!
+    totalLabel.text = formatter.stringFromNumber(total)!
   }
 
   @IBAction func onTap(sender: AnyObject) {
