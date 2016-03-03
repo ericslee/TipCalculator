@@ -70,9 +70,15 @@ class ViewController: UIViewController {
     let billAmount = (billField.text! as NSString).doubleValue
     let tip = billAmount * tipPercentage
     let total = billAmount + tip
+    let splitByTwoTotal = total / 2.0
+    let splitByThreeTotal = total / 3.0
+    let splitByFourTotal = total / 4.0
 
     tipLabel.text = formatter.stringFromNumber(tip)!
     totalLabel.text = formatter.stringFromNumber(total)!
+    twoPeopleSplitLabel.text = formatter.stringFromNumber(splitByTwoTotal)!
+    threePeopleSplitLabel.text = formatter.stringFromNumber(splitByThreeTotal)!
+    fourPeopleSplitLabel.text = formatter.stringFromNumber(splitByFourTotal)!
 
     animateElements()
   }
