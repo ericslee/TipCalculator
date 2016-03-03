@@ -132,6 +132,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="sNU-UZ-j1u">
                         <barButtonItem key="rightBarButtonItem" title="Settings" id="ulM-kU-jAm">
+                            <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="K2Q-GX-0hD" kind="modal" identifier="settingsSegue" id="H6Y-yK-8cL"/>
                             </connections>
@@ -174,6 +175,7 @@
                                 <rect key="frame" x="33" y="38" width="37" height="30"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <animations/>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <state key="normal" title="Done"/>
                                 <connections>
                                     <action selector="onTap:" destination="K2Q-GX-0hD" eventType="touchUpInside" id="DMX-nc-2KJ"/>
@@ -196,6 +198,7 @@
                                     <segment title="20%"/>
                                     <segment title="25%"/>
                                 </segments>
+                                <color key="tintColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="onEditingChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="qk1-8K-EZu"/>
                                     <action selector="onValueChange:" destination="K2Q-GX-0hD" eventType="valueChanged" id="AJh-gE-qVY"/>
