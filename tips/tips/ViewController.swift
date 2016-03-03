@@ -50,6 +50,8 @@ class ViewController: UIViewController {
         onEditingChanged(billField)
       }
     }
+
+    self.billField.becomeFirstResponder()
   }
 
   override func viewWillAppear(animated: Bool) {
