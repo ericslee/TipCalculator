@@ -14,6 +14,16 @@ class ViewController: UIViewController {
   @IBOutlet weak var tipLabel: UILabel!
   @IBOutlet weak var totalLabel: UILabel!
   @IBOutlet weak var tipControl: UISegmentedControl!
+  @IBOutlet weak var tipSymbolLabel: UILabel!
+  @IBOutlet weak var backgroundView: UIView!
+  @IBOutlet weak var equalsSymbolLabel: UILabel!
+
+  @IBOutlet weak var twoPeopleSymbolLabel: UILabel!
+  @IBOutlet weak var threePeopleSymbolLabel: UILabel!
+  @IBOutlet weak var fourPeopleSymbolLabel: UILabel!
+  @IBOutlet weak var twoPeopleSplitLabel: UILabel!
+  @IBOutlet weak var threePeopleSplitLabel: UILabel!
+  @IBOutlet weak var fourPeopleSplitLabel: UILabel!
 
   let formatter = NSNumberFormatter()
 
@@ -35,8 +45,10 @@ class ViewController: UIViewController {
     // overwritten to zero.
     let defaults = NSUserDefaults.standardUserDefaults()
     if let savedBill = defaults.objectForKey(kLastBillAmount) {
-      billField.text = savedBill as? String
-      onEditingChanged(billField)
+      if (savedBill as? String != "") {
+        billField.text = savedBill as? String
+        onEditingChanged(billField)
+      }
     }
   }
 
@@ -47,7 +59,8 @@ class ViewController: UIViewController {
     let intValue = defaults.integerForKey(kDefaultTip)
     tipControl.selectedSegmentIndex = intValue
 
-    onEditingChanged(billField)
+    // Update the tip amount.
+    //onEditingChanged(billField)
   }
 
   @IBAction func onEditingChanged(sender: AnyObject) {
@@ -60,10 +73,35 @@ class ViewController: UIViewController {
 
     tipLabel.text = formatter.stringFromNumber(tip)!
     totalLabel.text = formatter.stringFromNumber(total)!
+
+    animateElements()
   }
 
   @IBAction func onTap(sender: AnyObject) {
     view.endEditing(true)
+  }
+
+  func animateElements() {
+    // Animate everything coming in
+    // TODO: use constants.
+
+    UIView.animateWithDuration(0.8, delay: 0, options: .CurveEaseInOut, animations: {
+      self.billField.center = CGPointMake(self.billField.center.x, 130)
+
+      self.tipControl.alpha = 1.0;
+      self.tipSymbolLabel.center =
+          CGPointMake(50, self.tipSymbolLabel.center.y)
+      self.tipLabel.center = CGPointMake(195, self.tipLabel.center.y)
+      self.equalsSymbolLabel.center = CGPointMake(45, self.equalsSymbolLabel.center.y)
+      self.totalLabel.center = CGPointMake(200, self.totalLabel.center.y)
+      self.twoPeopleSymbolLabel.center = CGPointMake(50, self.twoPeopleSymbolLabel.center.y)
+      self.twoPeopleSplitLabel.center = CGPointMake(200, self.twoPeopleSplitLabel.center.y)
+      self.threePeopleSymbolLabel.center = CGPointMake(45, self.threePeopleSymbolLabel.center.y)
+      self.threePeopleSplitLabel.center = CGPointMake(200, self.threePeopleSplitLabel.center.y)
+      self.fourPeopleSymbolLabel.center = CGPointMake(45, self.fourPeopleSymbolLabel.center.y)
+      self.fourPeopleSplitLabel.center = CGPointMake(200, self.fourPeopleSplitLabel.center.y)
+      self.backgroundView.alpha = 0.8;
+    }, completion: nil)
   }
 }
 
