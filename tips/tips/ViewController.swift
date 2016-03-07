@@ -25,6 +25,13 @@ class ViewController: UIViewController {
   @IBOutlet weak var threePeopleSplitLabel: UILabel!
   @IBOutlet weak var fourPeopleSplitLabel: UILabel!
 
+  @IBOutlet weak var settingsButton: UIBarButtonItem!
+
+  var isDarkTheme = false;
+
+  let lightColor = UIColor(red: 54/255, green: 242/255, blue: 253/255, alpha: 1)
+  let darkColor = UIColor.blackColor()
+
   let formatter = NSNumberFormatter()
 
   override func viewDidLoad() {
@@ -58,8 +65,13 @@ class ViewController: UIViewController {
     super.viewWillAppear(animated)
 
     let defaults = NSUserDefaults.standardUserDefaults()
-    let intValue = defaults.integerForKey(kDefaultTip)
-    tipControl.selectedSegmentIndex = intValue
+    let defaultTip = defaults.integerForKey(kDefaultTip)
+    let defaultTheme = defaults.integerForKey(kDefaultColorTheme)
+    tipControl.selectedSegmentIndex = defaultTip
+    isDarkTheme = defaultTheme == 1 ? true : false
+
+    // Change theme color if necessary.
+    changeColorTheme()
 
     // Update the tip amount.
     //onEditingChanged(billField)
@@ -82,14 +94,14 @@ class ViewController: UIViewController {
     threePeopleSplitLabel.text = formatter.stringFromNumber(splitByThreeTotal)!
     fourPeopleSplitLabel.text = formatter.stringFromNumber(splitByFourTotal)!
 
-    animateElements()
+    animateElementsIn()
   }
 
   @IBAction func onTap(sender: AnyObject) {
     view.endEditing(true)
   }
 
-  func animateElements() {
+  func animateElementsIn() {
     // Animate everything coming in
     // TODO: use constants.
 
@@ -110,6 +122,34 @@ class ViewController: UIViewController {
       self.fourPeopleSplitLabel.center = CGPointMake(200, self.fourPeopleSplitLabel.center.y)
       self.backgroundView.alpha = 0.8;
     }, completion: nil)
+  }
+
+  func changeColorTheme() {
+    let newBackgroundColor = isDarkTheme ? self.darkColor : self.lightColor
+    let newTextColor = isDarkTheme ? self.lightColor : self.darkColor
+    let newTintColor =
+    isDarkTheme ? UIColor.darkGrayColor() : UIColor.whiteColor()
+
+    view.backgroundColor = newBackgroundColor
+    billField.textColor = newTextColor
+    tipLabel.textColor = newTextColor
+    totalLabel.textColor = newTextColor
+    tipControl.tintColor = newTextColor
+    tipSymbolLabel.textColor = newTextColor
+    equalsSymbolLabel.textColor = newTextColor
+
+    twoPeopleSymbolLabel.textColor = newTextColor
+    threePeopleSymbolLabel.textColor = newTextColor
+    fourPeopleSymbolLabel.textColor = newTextColor
+    twoPeopleSplitLabel.textColor = newTextColor
+    threePeopleSplitLabel.textColor = newTextColor
+    fourPeopleSplitLabel.textColor = newTextColor
+    settingsButton.tintColor = newTextColor
+
+    backgroundView.backgroundColor = newTintColor
+    navigationController?.navigationBar.barTintColor = newTintColor
+    UIApplication.sharedApplication().statusBarStyle =
+      isDarkTheme ? .LightContent : .Default
   }
 }
 

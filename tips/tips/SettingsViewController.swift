@@ -10,26 +10,30 @@ import UIKit
 
 class SettingsViewController: UIViewController {
 
+  @IBOutlet weak var tipTitleLabel: UILabel!
+  @IBOutlet weak var themeLabel: UILabel!
   @IBOutlet weak var doneButton: UIButton!
   @IBOutlet weak var tipControl: UISegmentedControl!
+  @IBOutlet weak var themeControl: UISegmentedControl!
+
+  let lightColor = UIColor(red: 54/255, green: 242/255, blue: 253/255, alpha: 1)
+  let darkColor = UIColor.blackColor()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
 
     let defaults = NSUserDefaults.standardUserDefaults()
-    let intValue = defaults.integerForKey(kDefaultTip)
-    tipControl.selectedSegmentIndex = intValue
+    let defaultTip = defaults.integerForKey(kDefaultTip)
+    let defaultTheme = defaults.integerForKey(kDefaultColorTheme)
+    tipControl.selectedSegmentIndex = defaultTip
+    themeControl.selectedSegmentIndex = defaultTheme
+
+    changeColorTheme(false)
   }
 
   @IBAction func onTap(sender: AnyObject) {
@@ -51,4 +55,38 @@ class SettingsViewController: UIViewController {
     defaults.synchronize()
   }
 
+  @IBAction func onThemeValueChange(sender: AnyObject) {
+    changeColorTheme(true)
+  }
+
+  func changeColorTheme(animated: Bool) {
+    let isDarkTheme = themeControl.selectedSegmentIndex == 1 ? true : false
+
+    // Set new theme value on the main VC.
+    let parentNavVC = self.presentingViewController as! UINavigationController
+    let parentVC = parentNavVC.topViewController as! ViewController
+    parentVC.isDarkTheme = isDarkTheme
+
+    // Change theme colors.
+    let newBackgroundColor = isDarkTheme ? self.darkColor : self.lightColor
+    let newTextColor = isDarkTheme ? self.lightColor : self.darkColor
+
+    let animationDuration = animated ? 0.2 : 0.0
+
+    UIView.animateWithDuration(animationDuration, animations: {
+      self.view.backgroundColor = newBackgroundColor
+      self.doneButton.tintColor = newTextColor
+      self.tipTitleLabel.textColor = newTextColor
+      self.tipControl.tintColor = newTextColor
+      self.themeLabel.textColor = newTextColor
+      self.themeControl.tintColor = newTextColor
+      UIApplication.sharedApplication().statusBarStyle =
+        isDarkTheme ? .LightContent : .Default
+    })
+
+    // Save theme color to user presets.
+    let defaults = NSUserDefaults.standardUserDefaults()
+    defaults.setInteger(themeControl.selectedSegmentIndex, forKey: kDefaultColorTheme)
+    defaults.synchronize()
+  }
 }
