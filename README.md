@@ -2,7 +2,7 @@
 
 This is a Tip Calculator application for iOS submitted as the [pre-assignment](https://gist.github.com/timothy1ee/7747214) requirement for CodePath.
 
-Time spent: 5
+Time spent: 6
 
 Completed:
 
@@ -16,7 +16,5 @@ Completed:
 
 ![Video Walkthrough](TipDemo.gif)
 
-Note: to embed the gif file, just check your gif file into your repo and update the name of the file above.
-
-App icon created using [Icons8](https://icons8.com/).
+App icon created using [Icons8](https://icons8.com/).  
 Gif created using [LICEcap](http://www.cockos.com/licecap/).
