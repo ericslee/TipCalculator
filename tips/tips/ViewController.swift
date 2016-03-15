@@ -29,9 +29,6 @@ class ViewController: UIViewController {
 
   var isDarkTheme = false;
 
-  let lightColor = UIColor(red: 54/255, green: 242/255, blue: 253/255, alpha: 1)
-  let darkColor = UIColor.blackColor()
-
   let formatter = NSNumberFormatter()
 
   override func viewDidLoad() {
@@ -72,13 +69,10 @@ class ViewController: UIViewController {
 
     // Change theme color if necessary.
     changeColorTheme()
-
-    // Update the tip amount.
-    //onEditingChanged(billField)
   }
 
   @IBAction func onEditingChanged(sender: AnyObject) {
-    var tipPercentages = [0.18, 0.2, 0.25]
+    var tipPercentages = [kDefaultSmallTipAmount, kDefaultMediumTipAmount, kDefaultLargeTipAmount]
     let tipPercentage = tipPercentages[tipControl.selectedSegmentIndex]
 
     let billAmount = (billField.text! as NSString).doubleValue
@@ -105,7 +99,10 @@ class ViewController: UIViewController {
     // Animate everything coming in
     // TODO: use constants.
 
-    UIView.animateWithDuration(0.8, delay: 0, options: .CurveEaseInOut, animations: {
+    UIView.animateWithDuration(kMainViewAppearanceAnimationDuration,
+      delay: 0,
+      options: .CurveEaseInOut,
+      animations: {
       self.billField.center = CGPointMake(self.billField.center.x, 130)
 
       self.tipControl.alpha = 1.0;
@@ -125,8 +122,8 @@ class ViewController: UIViewController {
   }
 
   func changeColorTheme() {
-    let newBackgroundColor = isDarkTheme ? self.darkColor : self.lightColor
-    let newTextColor = isDarkTheme ? self.lightColor : self.darkColor
+    let newBackgroundColor = isDarkTheme ? kDarkColor : kLightColor
+    let newTextColor = isDarkTheme ? kLightColor : kDarkColor
     let newTintColor =
     isDarkTheme ? UIColor.darkGrayColor() : UIColor.whiteColor()
 

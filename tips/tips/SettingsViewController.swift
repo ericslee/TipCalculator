@@ -16,14 +16,6 @@ class SettingsViewController: UIViewController {
   @IBOutlet weak var tipControl: UISegmentedControl!
   @IBOutlet weak var themeControl: UISegmentedControl!
 
-  let lightColor = UIColor(red: 54/255, green: 242/255, blue: 253/255, alpha: 1)
-  let darkColor = UIColor.blackColor()
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
-
   override func viewWillAppear(animated: Bool) {
     super.viewWillAppear(animated)
 
@@ -40,15 +32,6 @@ class SettingsViewController: UIViewController {
     dismissViewControllerAnimated(true, completion: nil)
   }
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
   @IBAction func onValueChange(sender: AnyObject) {
     let defaults = NSUserDefaults.standardUserDefaults()
     defaults.setInteger(tipControl.selectedSegmentIndex, forKey: kDefaultTip)
@@ -68,10 +51,10 @@ class SettingsViewController: UIViewController {
     parentVC.isDarkTheme = isDarkTheme
 
     // Change theme colors.
-    let newBackgroundColor = isDarkTheme ? self.darkColor : self.lightColor
-    let newTextColor = isDarkTheme ? self.lightColor : self.darkColor
+    let newBackgroundColor = isDarkTheme ? kDarkColor : kLightColor
+    let newTextColor = isDarkTheme ? kLightColor : kDarkColor
 
-    let animationDuration = animated ? 0.2 : 0.0
+    let animationDuration = animated ? kColorThemeChangeAnimationDuration : 0.0
 
     UIView.animateWithDuration(animationDuration, animations: {
       self.view.backgroundColor = newBackgroundColor
