@@ -103,21 +103,24 @@ class ViewController: UIViewController {
       delay: 0,
       options: .CurveEaseInOut,
       animations: {
-      self.billField.center = CGPointMake(self.billField.center.x, 130)
+        self.billField.center = CGPointMake(self.billField.center.x, 130)
 
-      self.tipControl.alpha = 1.0;
-      self.tipSymbolLabel.center =
-          CGPointMake(50, self.tipSymbolLabel.center.y)
-      self.tipLabel.center = CGPointMake(195, self.tipLabel.center.y)
-      self.equalsSymbolLabel.center = CGPointMake(45, self.equalsSymbolLabel.center.y)
-      self.totalLabel.center = CGPointMake(200, self.totalLabel.center.y)
-      self.twoPeopleSymbolLabel.center = CGPointMake(50, self.twoPeopleSymbolLabel.center.y)
-      self.twoPeopleSplitLabel.center = CGPointMake(200, self.twoPeopleSplitLabel.center.y)
-      self.threePeopleSymbolLabel.center = CGPointMake(45, self.threePeopleSymbolLabel.center.y)
-      self.threePeopleSplitLabel.center = CGPointMake(200, self.threePeopleSplitLabel.center.y)
-      self.fourPeopleSymbolLabel.center = CGPointMake(45, self.fourPeopleSymbolLabel.center.y)
-      self.fourPeopleSplitLabel.center = CGPointMake(200, self.fourPeopleSplitLabel.center.y)
-      self.backgroundView.alpha = 0.8;
+        // TODO: should put all these labels in one UIView for the left and right sides and just
+        // animate those two views in.
+
+        self.tipControl.alpha = 1.0;
+        self.tipSymbolLabel.center =
+            CGPointMake(50, self.tipSymbolLabel.center.y)
+        self.tipLabel.center = CGPointMake(195, self.tipLabel.center.y)
+        self.equalsSymbolLabel.center = CGPointMake(45, self.equalsSymbolLabel.center.y)
+        self.totalLabel.center = CGPointMake(200, self.totalLabel.center.y)
+        self.twoPeopleSymbolLabel.center = CGPointMake(50, self.twoPeopleSymbolLabel.center.y)
+        self.twoPeopleSplitLabel.center = CGPointMake(200, self.twoPeopleSplitLabel.center.y)
+        self.threePeopleSymbolLabel.center = CGPointMake(45, self.threePeopleSymbolLabel.center.y)
+        self.threePeopleSplitLabel.center = CGPointMake(200, self.threePeopleSplitLabel.center.y)
+        self.fourPeopleSymbolLabel.center = CGPointMake(45, self.fourPeopleSymbolLabel.center.y)
+        self.fourPeopleSplitLabel.center = CGPointMake(200, self.fourPeopleSplitLabel.center.y)
+        self.backgroundView.alpha = 0.8;
     }, completion: nil)
   }
 
