@@ -27,7 +27,9 @@ class ViewController: UIViewController {
 
   @IBOutlet weak var settingsButton: UIBarButtonItem!
 
-  var isDarkTheme = false;
+  var isDarkTheme = false
+
+  var isFirstAppearance = true
 
   let formatter = NSNumberFormatter()
 
@@ -56,6 +58,8 @@ class ViewController: UIViewController {
     }
 
     self.billField.becomeFirstResponder()
+
+    isFirstAppearance = false
   }
 
   override func viewWillAppear(animated: Bool) {
@@ -69,6 +73,11 @@ class ViewController: UIViewController {
 
     // Change theme color if necessary.
     changeColorTheme()
+
+    // Update tip amount.
+    if (!isFirstAppearance) {
+      onEditingChanged(self)
+    }
   }
 
   @IBAction func onEditingChanged(sender: AnyObject) {
