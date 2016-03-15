@@ -19,3 +19,4 @@ Completed:
 Note: to embed the gif file, just check your gif file into your repo and update the name of the file above.
 
 App icon created using [Icons8](https://icons8.com/).
+Gif created using [LICEcap](http://www.cockos.com/licecap/).
